@@ -1,25 +1,32 @@
+'use client'
+
 import Link from 'next/link'
 import useSWR from 'swr'
 
-export default function First() {
-  const albums = [
-    {artist: "Seventeen", album: "12TH MINI ALBUM `SPILL THE FEELS`", sales: "~3.179.000+"},
-    {artist: "Seventeen", album: "BEST ALBUM `17 IS RIGHT HERE`", sales: "~3.093.000+"},
-    {artist: "Stray Kids", album: "ATE", sales: "~2.875.000+"},
-    {artist: "Enhypen", album: "ROMANCE : UNTOLD", sales: "~2.377.000+"},
-    {artist: "NCT DREAM", album: "DREAM( )SCAPE", sales: "~2.217.000+"},
-    {artist: "Seventeen", album: "12TH MINI ALBUM `SPILL THE FEELS`", sales: "~3.179.000+"},
-    {artist: "Seventeen", album: "BEST ALBUM `17 IS RIGHT HERE`", sales: "~3.093.000+"},
-    {artist: "Stray Kids", album: "ATE", sales: "~2.875.000+"},
-    {artist: "Enhypen", album: "ROMANCE : UNTOLD", sales: "~2.377.000+"},
-    {artist: "NCT DREAM", album: "DREAM( )SCAPE", sales: "~2.217.000+"},
-  ]
+const fetcher = (url: string) => fetch(`/api${url}`).then((res) => res.json());
 
-  const albumList = albums.map((data, index)=>
+export default function First() {
+  
+  const { data, error } = useSWR(
+    "/albums",
+    fetcher
+  );
+
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
+
+  interface AlbumData {
+    id: number;
+    albumTitle: string;
+    artist: string;
+    sales: string;
+  }
+
+  const albumList = data.map((album: AlbumData, index: number) =>
     <div key={index} className="grid grid-cols-4 gap-20 text-lg pb-2">
-      <div className="col-span-2">{index+1}. {data.album}</div>
-      <div>{data.artist}</div>
-      <div>{data.sales}</div>
+      <div className="col-span-2">{index + 1}. {album.albumTitle}</div>
+      <div>{album.artist}</div>
+      <div>{album.sales}</div>
     </div>
   )
     return (

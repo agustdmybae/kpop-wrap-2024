@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from "../../../lib/db";
 
-// type ResponseData = {
-//     id: number,
-//     artist: string,
-//     albumTitle: string,
-//     sales: string,
-//   }
+type Album = {
+    id: number,
+    artist: string,
+    albumTitle: string,
+    sales: string,
+  }
  
 
 
