@@ -1,23 +1,27 @@
+'use client'
+import useSWR from 'swr'
 
+const fetcher = (url: string) => fetch(`/api${url}`).then((res) => res.json());
 
 export default function Second() {
-  const songs = [
-    {artist: "Aespa", song: "Supernova"},
-    {artist: "IU", song: "Love wins all"},
-    {artist: "(G)I-dle	", song: "Fate"},
-    {artist: "Day6	", song: "Time of our life"},
-    {artist: "Lim Jae Hyun", song: "Rhapsody of Sadness"},
-    {artist: "Aespa", song: "Supernova"},
-    {artist: "IU", song: "Love wins all"},
-    {artist: "(G)I-dle	", song: "Fate"},
-    {artist: "Day6	", song: "Time of our life"},
-    {artist: "Lim Jae Hyun", song: "Rhapsody of Sadness"},
-  ]
+  const { data, error } = useSWR(
+    "/songs",
+    fetcher
+  );
+
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
+
+  interface SongData {
+    id: number;
+    songTitle: string;
+    artist: string;
+  }
   
-  const songList = songs.map((data, index)=>
+  const songList = data.map((song: SongData, index: number)=>
     <div key={index} className="grid grid-cols-2 gap-20 text-lg pb-2">
-      <div>{index+1}. {data.song}</div>
-      <div>{data.artist}</div>
+      <div>{index+1}. {song.songTitle}</div>
+      <div>{song.artist}</div>
     </div>
   )
     return (
