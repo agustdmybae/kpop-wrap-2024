@@ -1,14 +1,6 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from "../../../lib/db";
-
-type Album = {
-    id: number,
-    artist: string,
-    albumTitle: string,
-    sales: string,
-  }
  
-
 
 export async function GET() {
   const client = await connectToDatabase();
