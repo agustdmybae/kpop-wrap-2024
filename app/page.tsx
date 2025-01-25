@@ -22,7 +22,11 @@ export default function Home() {
             <a className="text-yellow-300 text-2xl">Another epic year of KPOP</a>
             <a className="text-yellow-300 text-2xl">Let’s rewind on the amazing moments</a>
           </div>
-          <Link className='border-solid border-2 rounded border-yellow-300 w-20 h-8 text-center text-yellow-300 text-2xl' href="/first">→</Link>
+          <motion.div
+            whileHover={{scale:1.1}}
+          >
+            <Link className='border-solid border-2 rounded border-yellow-300 px-4 text-center text-yellow-300 text-2xl' href="/first">→</Link>
+          </motion.div>
         </motion.div>
       </main>
       {/* 
