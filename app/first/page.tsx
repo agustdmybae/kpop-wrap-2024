@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion';
 import Link from 'next/link'
 import useSWR from 'swr'
 
@@ -32,7 +33,13 @@ export default function First() {
     return (
       <div>
         <div className="flex flex-col items-center justify-center min-h-screen">
-          <a className="text-yellow-300 text-4xl font-bold">More than 200 albums are released in the year.</a>
+          <motion.a 
+            style={{overflow:"hidden", whiteSpace:"nowrap", textAlign: "center"}}
+            initial={{width:0}}
+            animate={{width:"100%"}}
+            transition={{duration:2, ease:"easeInOut"}}
+            className="text-yellow-300 text-4xl font-bold"
+          >More than 300 Kpop albums are released in the year.</motion.a>
         </div>
         <div className="flex flex-col gap-6 items-center justify-center min-h-screen">
           <a className="text-yellow-300 text-4xl font-bold">Among all the masterpieces, these albums stand out.</a>
