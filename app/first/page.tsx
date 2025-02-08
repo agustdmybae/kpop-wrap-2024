@@ -26,9 +26,9 @@ export default function First() {
   const maxSales = Math.max(...data.map((album: AlbumData) => album.sales)); // Find the maximum sales value
 
   const albumList = data.map((album: AlbumData, index: number) =>
-    <div key={index} className="flex flex-col gap-10 text-lg pb-2 text-yellow-300">
-      <div>{index + 1}</div>
-      <div>{album.albumTitle}</div>
+    <div key={index} className="flex flex-col gap-12 text-lg pb-2 text-yellow-300">
+      <div className='font-extrabold text-4xl'>{index + 1}</div>
+      <div className='max-w-56 h-16'>{album.albumTitle}</div>
       <div>{album.artist}</div>
       <div className="flex flex-col justify-end h-40">
         <div className="bg-yellow-300" style={{
@@ -52,7 +52,7 @@ export default function First() {
         </div>
         <div className="relative h-screen bg-black flex flex-col gap-6 items-center justify-center">
           <a className="text-yellow-300 text-4xl font-bold">Among all the masterpieces, these albums stand out.</a>
-          <a className="text-yellow-300 text-2xl font-medium">Do you spot your favorite one?</a>
+          <a className="text-yellow-300 text-2xl font-medium">2024 Best Selling Kpop Albums. Do you spot your favorite one?</a>
           <div className="my-3 text-black rounded-lg p-8 flex flex-row gap-20">
             {albumList}
           </div>
