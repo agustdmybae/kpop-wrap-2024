@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link'
 import useSWR from 'swr'
+import Image from 'next/image'
 
 const fetcher = (url: string) => fetch(`/api${url}`).then((res) => res.json());
 
@@ -21,6 +22,7 @@ export default function First() {
     albumTitle: string;
     artist: string;
     sales: number;
+    image: string;
   }
 
   const maxSales = Math.max(...data.map((album: AlbumData) => album.sales)); // Find the maximum sales value
@@ -29,6 +31,11 @@ export default function First() {
     <div key={index} className="flex flex-col gap-12 text-lg pb-2">
       <div className='font-extrabold text-4xl text-yellow-300'>{index + 1}</div>
       <div className='max-w-56 h-8 text-white'>{album.albumTitle}</div>
+      <Image 
+        src={album.image}
+        width={200}
+        height={200}
+        alt="Picture of the album"/>
       <div className='text-white'>{album.artist}</div>
       <div className="flex flex-col justify-end h-40 text-yellow-300">
         <div className="bg-yellow-300" style={{
