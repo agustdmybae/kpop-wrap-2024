@@ -26,17 +26,17 @@ export default function First() {
   const maxSales = Math.max(...data.map((album: AlbumData) => album.sales)); // Find the maximum sales value
 
   const albumList = data.map((album: AlbumData, index: number) =>
-    <div key={index} className="flex flex-col gap-12 text-lg pb-2 text-yellow-300">
-      <div className='font-extrabold text-4xl'>{index + 1}</div>
-      <div className='max-w-56 h-16'>{album.albumTitle}</div>
-      <div>{album.artist}</div>
-      <div className="flex flex-col justify-end h-40">
+    <div key={index} className="flex flex-col gap-12 text-lg pb-2">
+      <div className='font-extrabold text-4xl text-yellow-300'>{index + 1}</div>
+      <div className='max-w-56 h-8 text-white'>{album.albumTitle}</div>
+      <div className='text-white'>{album.artist}</div>
+      <div className="flex flex-col justify-end h-40 text-yellow-300">
         <div className="bg-yellow-300" style={{
             height: `${(album.sales / maxSales) * 180}px`, // Calculate width based on sales
             width: '20px', // Set a fixed height for the rectangles
           }}></div>
       </div>
-      <div>{album.sales / 1000}M+</div>
+      <div className='text-yellow-300'>{album.sales / 1000}M+</div>
     </div>
   )
     return (
@@ -47,7 +47,7 @@ export default function First() {
             initial={{width:0}}
             animate={{width:"100%"}}
             transition={{duration:3, ease:"easeInOut"}}
-            className="text-black text-4xl font-bold"
+            className="text-black text-5xl font-bold"
           >More than 300 Kpop albums are released in the year.</motion.a>
         </div>
         <div className="relative h-screen bg-black flex flex-col gap-6 items-center justify-center">
